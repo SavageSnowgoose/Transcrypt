@@ -136,7 +136,9 @@ def create (path, binary = False):
             if binary:
                 return open (path, 'wb')
             else:
-                return open (path, 'w', encoding = 'utf-8')
+                file = open (path, 'w', encoding = 'utf-8')
+                file.write('\ufeff')  # Add the UTF-8 BOM
+                return file
                 
             if i > 0:
                 log (True, f'Created {path} at attempt {i + 1}')
